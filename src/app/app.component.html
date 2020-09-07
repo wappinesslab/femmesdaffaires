@@ -1,3 +1,29 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="contentMenu">
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Femmes d'Affaires</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list lines="full">
+        <ion-list-header>
+          <ion-label>MENU PRINCIPAL</ion-label>
+        </ion-list-header>
+          <ion-item>
+            <ion-icon slot="start" name="search-outline"></ion-icon>
+            <ion-button fill="clear" color="secondary">Rechercher</ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="bookmarks-outline"></ion-icon>
+            <ion-button fill="clear" color="secondary">Favoris</ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-button fill="clear" routerLink="/settings" color="secondary">Paramètres</ion-button>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="contentMenu" main></ion-router-outlet>
 </ion-app>

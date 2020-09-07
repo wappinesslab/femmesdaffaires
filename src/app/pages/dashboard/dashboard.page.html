@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-title>Tableau de bord</ion-title>
+    </ion-buttons>
+    <ion-button color="secondary" fill="clear" slot="end">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="segmentShowFirst">
+    <ion-segment-button value="businesses">
+      <ion-label>Entreprises</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="categories">
+      <ion-label>Catégories</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  
+  <div [ngSwitch]="segmentShowFirst">
+    <ion-list lines="full" *ngSwitchCase="'businesses'" padding>
+
+      
+
+      <div class="category-list">
+        Entreprises
+      </div>
+
+
+
+      <ion-item-sliding  *ngFor="let biz of businessList">
+
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img *ngIf="biz?.logoImgUrl" src="{{biz?.logoImgUrl}}">
+            <img *ngIf="!biz?.logoImgUrl" src="../../../assets/images/femmes-daffaires-img-gray.png">
+          </ion-thumbnail>
+          <ion-label>
+            <h3> {{biz?.personFirstName}} {{biz?.personLastName}}</h3>
+            <p><a *ngIf="!biz?.personEmail" href="mailto:{{biz?.personEmail}}"> {{biz?.personEmail}} </a></p>
+            <p><a href="tel:+509{{biz?.phoneNumber}}"> {{biz?.phoneNumber}} </a></p>
+          </ion-label>
+          <ion-note slot="end">
+            {{ myFormat(biz?.createdAt) }}
+          </ion-note>
+        </ion-item>
+
+        <ion-item-options side="start">
+          <ion-item-option color="secondary" expandable>Modifier</ion-item-option>
+        </ion-item-options>
+        
+        <ion-item-options side="end" (ionSwipe)="deleteBusiness(biz?.logoImgName, biz?.companyName, biz?.id)">
+          <ion-item-option color="danger" (click)="deleteBusiness(biz?.logoImgName, biz?.companyName, biz?.id)" expandable>Supprimer</ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+
+    </ion-list>
+    <ion-list lines="full" *ngSwitchCase="'categories'" padding>
+      <div class="category-list">
+        Catégories
+      </div>
+
+      <ion-item-sliding  *ngFor="let category of categoryList">
+        <ion-item>
+          <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h3> {{category?.name}} </h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="start" (ionSwipe)="editBusinessCategory(category?.id)">
+          <ion-item-option color="secondary" (click)="editBusinessCategory(category?.name, category?.id)" expandable>Modifier</ion-item-option>
+        </ion-item-options>
+        
+        <ion-item-options side="end" (ionSwipe)="deleteBusinessCategory(category?.name, category?.id)">
+          <ion-item-option color="danger" (click)="deleteBusinessCategory(category?.name, category?.id)" expandable>Supprimer</ion-item-option>
+        </ion-item-options>
+        
+      </ion-item-sliding>
+
+
+
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="dashnoardFAB($event)">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

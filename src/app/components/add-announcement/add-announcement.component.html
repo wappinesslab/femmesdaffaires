@@ -1,0 +1,228 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ajouter une entreprise</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="announcementForm">
+    <div class="profile-image-wrapper">
+      <div class="profile-image-placeholder">
+        <div>
+          <ion-icon name="camera"></ion-icon>
+          <input type="file" (change)="onChange($event)"/>
+          LOGO
+        </div>
+      </div>
+    </div>
+  
+    <ion-item>
+      <h3>Informations Personnelles</h3>
+
+      <ion-label position="floating">Prénom:</ion-label>
+      <ion-input formControlName="personFirstName"  type="text" [class.invalid]="!announcementForm.controls['personFirstName'].valid && announcementForm.controls['personFirstName'].touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personFirstName'].valid && announcementForm.controls['personFirstName'].touched">
+      <p>20 caractères maximum.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nom:</ion-label>
+      <ion-input formControlName="personLastName"  type="text" [class.invalid]="!announcementForm.controls['personLastName'].valid && announcementForm.controls['personLastName'].touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personLastName'].valid && announcementForm.controls['personLastName'].touched">
+      <p>20 caractères maximum.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Date de naissance:</ion-label>
+      <ion-datetime formControlName="personBirthday" displayFormat="D MMMM YYYY" placeholder="JJ/MM/AA" [class.invalid]="!announcementForm.controls['personBirthday'].valid && announcementForm.controls['personBirthday'].touched"></ion-datetime>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personBirthday'].valid && announcementForm.controls['personBirthday'].touched">
+      <p>Vous devez choisir la date de naissance.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input formControlName="personEmail"  type="text" [class.invalid]="!announcementForm.controls['personEmail'].valid && announcementForm.controls['personEmail'].touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personEmail'].valid && announcementForm.controls['personEmail'].touched">
+      <p>20 caractères maximum. les Caractères spéciaux accéptés sont le signe + et le trait d'union (-).</p>
+    </ion-item>
+        
+    <ion-item>
+      <ion-label position="floating">NIF/CIN:</ion-label>
+      <ion-input formControlName="personNIFCIN"  type="text" [class.invalid]="!announcementForm.controls['personNIFCIN'].valid && announcementForm.controls['personNIFCIN'].touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personNIFCIN'].valid && announcementForm.controls['personNIFCIN'].touched">
+      <p>Chiffres uniquement. N'ajoutez pas les traits d'union.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Statut:</ion-label>
+      <ion-select formControlName="personStatus" placeholder="Choisir une catégorie" [class.invalid]="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
+        <ion-select-option value="Célibataire">Célibataire</ion-select-option>
+        <ion-select-option value="Union libre">Union libre</ion-select-option>
+        <ion-select-option value="Mariéé">Mariée</ion-select-option>
+        <ion-select-option value="Divorcée">Divorcée</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
+      <p>Vous devez choisir un statut.</p>
+    </ion-item>
+    <br>
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ion-item>
+      <h3>Informations sur l'entreprise</h3>
+
+      <ion-label position="floating">Nom de l'entreprise:</ion-label>
+      <ion-input formControlName="companyName"  type="text" [class.invalid]="!announcementForm.controls['companyName'].valid && announcementForm.controls['companyName'].touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyName'].valid && announcementForm.controls['companyName'].touched">
+      <p>30 caractères maximum. les Caractères spéciaux accéptés sont le signe + et le trait d'union (-).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description:</ion-label>
+      <ion-textarea rows="6" cols="20" formControlName="companyDescription" [class.invalid]="!announcementForm.controls['companyDescription'].valid && announcementForm.controls['companyDescription'].touched"></ion-textarea>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyDescription'].valid && announcementForm.controls['companyDescription'].touched">
+      <p>500 caractères maximum.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Sécteur d'activité</ion-label>
+      <ion-select formControlName="companyCategory" placeholder="Choisir un sécteur" [class.invalid]="!announcementForm.controls['companyCategory'].valid && announcementForm.controls['companyCategory'].touched">
+        <ion-select-option *ngFor="let category of categoryList" value="{{category?.id}}">
+          {{category?.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyCategory'].valid && announcementForm.controls['companyCategory'].touched">
+      <p>Vous devez choisir un sécteur.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Date d'inscription:</ion-label>
+      <ion-datetime formControlName="companyEnrollDate" displayFormat="D MMMM YYYY" placeholder="JJ/MM/AA" [class.invalid]="!announcementForm.controls['companyEnrollDate'].valid && announcementForm.controls['companyEnrollDate'].touched"></ion-datetime>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyEnrollDate'].valid && announcementForm.controls['companyEnrollDate'].touched">
+      <p>Vous devez choisir une date d'inscription.</p>
+    </ion-item>
+    <br>
+
+    <ion-item>
+      <ion-label position="floating">Email de l'entreprise <em style="color: #a1a1a1;">(Optionnel)</em>:</ion-label>
+      <ion-input formControlName="companyEmail" type="text" [class.invalid]="!announcementForm.controls['companyEmail'].valid && announcementForm.controls['companyEmail'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyEmail'].valid && announcementForm.controls['companyEmail'].touched">
+      <p>Cet email est invalide.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">No. WhatsApp:</ion-label>
+      <ion-input formControlName="whatsappNumber" type="text" [class.invalid]="!announcementForm.controls['whatsappNumber'].valid && announcementForm.controls['whatsappNumber'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['whatsappNumber'].valid && announcementForm.controls['whatsappNumber'].touched">
+      <p>Ce numéro de téléphone est invalide. 8 chiffres maximum (sans le +509).</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">No. d'appel:</ion-label>
+      <ion-input formControlName="phoneNumber" type="text" [class.invalid]="!announcementForm.controls['phoneNumber'].valid && announcementForm.controls['phoneNumber'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['phoneNumber'].valid && announcementForm.controls['phoneNumber'].touched">
+      <p>Ce numéro de téléphone est invalide. 8 chiffres maximum (sans le +509).</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Autre No. Téléphone <em style="color: #a1a1a1;">(Optionnel)</em>:</ion-label>
+      <ion-input formControlName="companyPhone3" type="text" [class.invalid]="!announcementForm.controls['companyPhone3'].valid && announcementForm.controls['companyPhone'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyPhone3'].valid && announcementForm.controls['companyPhone3'].touched">
+      <p>Ce numéro de téléphone est invalide. 8 chiffres maximum (sans le +509).</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Adresse:</ion-label>
+      <ion-input formControlName="companyAddress" type="text" [class.invalid]="!announcementForm.controls['companyAddress'].valid && announcementForm.controls['companyAddress'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyAddress'].valid && announcementForm.controls['companyAddress'].touched">
+      <p>100 caractères maximum.</p>
+    </ion-item>
+        
+    <ion-item>
+      <ion-label position="floating">Commune: </ion-label>
+      <ion-select formControlName="companyCity" placeholder="Choisir une commune" [class.invalid]="!announcementForm.controls['companyCity'].valid && announcementForm.controls['companyCity'].touched">
+        <ion-select-option *ngFor="let city of cities" value="{{city?.name}}">
+          {{city?.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyCity'].valid && announcementForm.controls['companyCity'].touched">
+      <p>Vous devez choisir une commune.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Département: </ion-label>
+      <ion-select formControlName="companyState" placeholder="Choisir un département" [class.invalid]="!announcementForm.controls['companyState'].valid && announcementForm.controls['companyState'].touched">
+        <ion-select-option *ngFor="let state of states" value="{{state?.name}}">
+          {{state?.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyState'].valid && announcementForm.controls['companyState'].touched">
+      <p>Vous devez choisir un département.</p>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Site Web: <em style="color: #eee;">(Optionnel)</em>:</ion-label>
+      <ion-input formControlName="companyWebsite"  type="text" [class.invalid]="!announcementForm.controls['companyWebsite'].valid && announcementForm.controls['companyWebsite'].touched"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyWebsite'].valid && announcementForm.controls['companyWebsite'].touched">
+      <p>Site Web invalide. Ex: ccfeh.com</p>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label position="floating">Cotisation: </ion-label>
+      <ion-select formControlName="annualFee" placeholder="Choisir une option" [class.invalid]="!announcementForm.controls['annualFee'].valid && announcementForm.controls['annualFee'].touched">
+        <ion-select-option value="uptodate">À Jour</ion-select-option>
+        <ion-select-option value="outdated">Retard de paiement</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['annualFee'].valid && announcementForm.controls['annualFee'].touched">
+      <p>Vous devez valider la cotisation.</p>
+    </ion-item>
+    
+    <br/>
+
+    <br/>
+    <ion-button color="primary" expand="block" [disabled]="!announcementForm.valid" (click)="createAnnouncement(announcementForm)">
+    Envoyer
+    </ion-button>
+    <br/><br/>
+  </form>
+</ion-content>

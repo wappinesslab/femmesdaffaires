@@ -1,5 +1,7 @@
 {
   "name": "femmesdaffaires",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
