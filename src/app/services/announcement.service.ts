@@ -8,16 +8,31 @@ import * as firebase from "firebase";
 export class AnnouncementService {
 
   public categoriesList: firebase.firestore.CollectionReference;
+  public announcementList: firebase.firestore.CollectionReference;
   public announcementCategoryListRef: firebase.firestore.CollectionReference;
   public announcementListRef: firebase.firestore.CollectionReference;
 
   constructor(
     private authService: AuthService
   ) {
+    this.announcementListRef = firebase.firestore().collection(`businesses`);
     this.categoriesList = firebase.firestore().collection(`categories`);
   }
 
-  
+  getBusinessessesList(): firebase.firestore.CollectionReference {
+    return this.announcementListRef;
+  }
+
+  async getBusinessessDetails(
+    businessId: string
+  ): Promise<firebase.firestore.DocumentSnapshot> {
+    this.announcementList = firebase
+      .firestore()
+      .collection(`businesses/${businessId}`);
+    return this.announcementList.doc(businessId).get();
+  }
+
+
   getCategoriesDetails(): firebase.firestore.CollectionReference {
     return this.categoriesList;
   }
@@ -54,7 +69,7 @@ export class AnnouncementService {
     personStatus: String,
     companyName: string,
     companyDescription: string,
-    companyCategory: String,
+    categoryID: String,
     companyEnrollDate: String,
     companyEmail: string,
     whatsappNumber: number,
@@ -81,7 +96,7 @@ export class AnnouncementService {
       personStatus,
       companyName,
       companyDescription,
-      companyCategory,
+      categoryID,
       companyEnrollDate,
       companyEmail,
       whatsappNumber,

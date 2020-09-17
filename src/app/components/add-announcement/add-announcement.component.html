@@ -87,13 +87,6 @@
 
 
 
-
-
-
-
-
-
-
     <ion-item>
       <h3>Informations sur l'entreprise</h3>
 
@@ -115,13 +108,13 @@
     
     <ion-item>
       <ion-label>Sécteur d'activité</ion-label>
-      <ion-select formControlName="companyCategory" placeholder="Choisir un sécteur" [class.invalid]="!announcementForm.controls['companyCategory'].valid && announcementForm.controls['companyCategory'].touched">
+      <ion-select formControlName="categoryID" placeholder="Choisir un sécteur" [class.invalid]="!announcementForm.controls['categoryID'].valid && announcementForm.controls['categoryID'].touched">
         <ion-select-option *ngFor="let category of categoryList" value="{{category?.id}}">
           {{category?.name}}
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyCategory'].valid && announcementForm.controls['companyCategory'].touched">
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['categoryID'].valid && announcementForm.controls['categoryID'].touched">
       <p>Vous devez choisir un sécteur.</p>
     </ion-item>
     

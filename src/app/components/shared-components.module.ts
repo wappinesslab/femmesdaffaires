@@ -7,6 +7,7 @@ import { DashboardFabComponent } from './dashboard-fab/dashboard-fab.component';
 import { ProfilePopoverComponent } from './profile-popover/profile-popover.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomeSliderTopComponent } from './home-slider-top/home-slider-top.component';
 
 
 
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddAnnouncementComponent,
     DashboardFabComponent,
     ProfilePopoverComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeSliderTopComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddAnnouncementComponent,
     DashboardFabComponent,
     ProfilePopoverComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeSliderTopComponent
   ]
 })
 export class SharedComponentsModule { }

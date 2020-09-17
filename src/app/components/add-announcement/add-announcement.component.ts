@@ -44,7 +44,7 @@ export class AddAnnouncementComponent implements OnInit {
       personStatus: ["", Validators.compose([Validators.required])],
       companyName: ["", Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 '-]*$")])],
       companyDescription: ["", Validators.compose([Validators.required, Validators.maxLength(500)])],
-      companyCategory: ["", Validators.compose([Validators.required])],
+      categoryID: ["", Validators.compose([Validators.required])],
       companyEnrollDate: ["", Validators.compose([Validators.required])],
       companyEmail: ["", Validators.compose([Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'), Validators.email])],
       whatsappNumber: ["", Validators.compose([Validators.required, Validators.pattern('^^((\\+509-?)|0)?[0-9]{8}$')])],
@@ -316,7 +316,7 @@ export class AddAnnouncementComponent implements OnInit {
     const personStatus: String = announcementForm.value.personStatus;
     const companyName: string = announcementForm.value.companyName;
     const companyDescription: string = announcementForm.value.companyDescription;
-    const companyCategory: string = announcementForm.value.companyCategory;
+    const categoryID: string = announcementForm.value.categoryID;
     const companyEnrollDate: string = announcementForm.value.companyEnrollDate;
     const companyEmail: string = announcementForm.value.companyEmail;
     const whatsappNumber: number = announcementForm.value.whatsappNumber;
@@ -328,10 +328,10 @@ export class AddAnnouncementComponent implements OnInit {
     const companyWebsite: string = announcementForm.value.companyWebsite;
     const annualFee: string = announcementForm.value.annualFee;
 
-    console.log(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, companyCategory, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName);
+    console.log(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName);
     
     self.annoucementService
-    .createAnnouncement(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, companyCategory, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName)
+    .createAnnouncement(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName)
     .then(() => {
       console.log(announcementForm);
       self.loading.dismiss().then(() => {

@@ -9,6 +9,22 @@
 
 <ion-content>
 
+  <app-home-slider-top></app-home-slider-top>
+
+  <div class="home-main-ctner">
+
+    <ion-text class="select-category">SELECTIONNER UNE CATEGORIE</ion-text>
+
+    <div class="home-category-section">
+      <a  *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}">
+        <div class="home-category-item">
+          {{category?.name}}
+        </div>
+      </a>
+    </div>
+  </div>
+
+
 </ion-content>
 
 <ion-footer>
