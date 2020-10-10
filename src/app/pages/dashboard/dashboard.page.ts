@@ -38,7 +38,7 @@ export class DashboardPage implements OnInit {
     });
     await this.loading.present();
 
-    firebase.firestore().collection("categories").orderBy("createdAt", "desc").limit(6).get().then(async catListSnapshot => {
+    firebase.firestore().collection("categories").orderBy("createdAt", "desc").get().then(async catListSnapshot => {
       this.categoryList = await [];
       catListSnapshot.forEach( async (snap) => {
           this.categoryList.push({
@@ -105,7 +105,7 @@ export class DashboardPage implements OnInit {
       cssClass: 'custom-modal-css',
       backdropDismiss: false
     });
-    console.log('Name: ', this.businessCategory.name);
+    console.log('Name: ', this.businessCategory.name, 'ID: ', this.businessCategory.id, 'Slug: ', this.businessCategory.Slug);
     await modal.present();
     this.popover.dismiss();
     });

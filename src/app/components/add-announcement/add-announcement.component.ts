@@ -36,13 +36,13 @@ export class AddAnnouncementComponent implements OnInit {
     private alertCtrl: AlertController
   ) {
     this.announcementForm = this.formBuilder.group({
-      personFirstName: ["", Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 '-]*$")])],
-      personLastName: ["", Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 '-]*$")])],
+      personFirstName: ["", Validators.compose([Validators.required, Validators.maxLength(30)])],
+      personLastName: ["", Validators.compose([Validators.required, Validators.maxLength(30)])],
       personBirthday: ["", Validators.compose([Validators.required])],
       personEmail: ["", Validators.compose([Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'), Validators.email])],
       personNIFCIN: ["", Validators.compose([Validators.required, Validators.pattern('^^((\\+509-?)|0)?[0-9]*$')])],
-      personStatus: ["", Validators.compose([Validators.required])],
-      companyName: ["", Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern("^[a-zA-Z0-9 '-]*$")])],
+      companyStatus: ["", Validators.compose([Validators.required])],
+      companyName: ["", Validators.compose([Validators.required, Validators.maxLength(30)])],
       companyDescription: ["", Validators.compose([Validators.required, Validators.maxLength(500)])],
       categoryID: ["", Validators.compose([Validators.required])],
       companyEnrollDate: ["", Validators.compose([Validators.required])],
@@ -263,7 +263,7 @@ export class AddAnnouncementComponent implements OnInit {
     });
     await this.loading.present();
 
-    firebase.firestore().collection("categories").orderBy("createdAt", "desc").limit(6).get().then(async catListSnapshot => {
+    firebase.firestore().collection("categories").orderBy("createdAt", "desc").get().then(async catListSnapshot => {
       this.categoryList = await [];
       catListSnapshot.forEach( async (snap) => {
           this.categoryList.push({
@@ -313,7 +313,7 @@ export class AddAnnouncementComponent implements OnInit {
     const personBirthday: any = announcementForm.value.personBirthday;
     const personEmail: string = announcementForm.value.personEmail;
     const personNIFCIN: number = announcementForm.value.personNIFCIN;
-    const personStatus: String = announcementForm.value.personStatus;
+    const companyStatus: String = announcementForm.value.companyStatus;
     const companyName: string = announcementForm.value.companyName;
     const companyDescription: string = announcementForm.value.companyDescription;
     const categoryID: string = announcementForm.value.categoryID;
@@ -328,10 +328,10 @@ export class AddAnnouncementComponent implements OnInit {
     const companyWebsite: string = announcementForm.value.companyWebsite;
     const annualFee: string = announcementForm.value.annualFee;
 
-    console.log(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName);
+    console.log(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, companyStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName);
     
     self.annoucementService
-    .createAnnouncement(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, personStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName)
+    .createAnnouncement(personFirstName, personLastName, personBirthday, personEmail, personNIFCIN, companyStatus, companyName, companyDescription, categoryID, companyEnrollDate, companyEmail, whatsappNumber, phoneNumber, companyPhone3, companyAddress, companyState, companyCity, companyWebsite, annualFee, self.logoImgURL, this.fileName)
     .then(() => {
       console.log(announcementForm);
       self.loading.dismiss().then(() => {

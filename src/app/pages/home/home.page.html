@@ -1,13 +1,12 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header class="header" translucent="true">
+  <ion-toolbar class="head" color="translucent">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Femme d'Affaires</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
 
   <app-home-slider-top></app-home-slider-top>
 
@@ -16,7 +15,7 @@
     <ion-text class="select-category">SELECTIONNER UNE CATEGORIE</ion-text>
 
     <div class="home-category-section">
-      <a  *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}">
+      <a class="active-link" *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}">
         <div class="home-category-item">
           {{category?.name}}
         </div>
@@ -28,8 +27,8 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary">
-    <ion-tabs>
+  <ion-toolbar color="secondary">
+    <ion-tabs color="secondary">
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="home">
           <ion-icon name="home-outline"></ion-icon>

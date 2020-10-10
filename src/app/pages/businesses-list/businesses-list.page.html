@@ -9,9 +9,67 @@
 
 <ion-content>
 
-  <div *ngFor="let businesses of businessesList">
-    {{businesses.id}}
-    {{businesses?.category}}
-  </div>
+  
+  <app-home-slider-top></app-home-slider-top>
+
+  <ion-list lines="full">
+    
+    <div class="businesses-list-page-title text-align-center">
+      TOUTES LES ENTREPRISES
+    </div>
+
+    <div *ngFor="let businesses of businessesList">
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img *ngIf="businesses?.logoImgUrl" src="{{businesses?.logoImgUrl}}">
+          <img *ngIf="!businesses?.logoImgUrl" src="../../../assets/images/femmes-daffaires-img-gray.png">
+        </ion-thumbnail>
+        <ion-label>
+          <h2> {{businesses?.companyName}} </h2>
+          <h3> {{businesses?.companyCity}} </h3>
+          <p>
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            {{businesses?.phoneNumber}}
+          </p>
+          <p>
+            <ion-icon name="call-outline"></ion-icon>
+            {{businesses?.whatsappNumber}}
+          </p>
+          <p>
+            <ion-icon name="mail-outline"></ion-icon>
+            {{businesses?.personEmail}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>
+        
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button href="https://wa.me/509{{businesses?.whatsappNumber}}" expand="full" fill="clear" color="secondary">
+              <ion-icon slot="icon-only" name="logo-whatsapp"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button href="tel:+509{{businesses?.whatsappNumber}}" expand="full" fill="clear" color="secondary">
+              <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button href="mailto:entreprisehaiti@gmail.com" expand="full" fill="clear" color="secondary">
+              <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" fill="clear" color="secondary">
+              <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </ion-item-divider>
+    </div>
+      
+  </ion-list>
 
 </ion-content>

@@ -33,7 +33,7 @@
     "cordova-plugin-googleplus": "^8.5.0",
     "cordova-plugin-inappbrowser": "^4.0.0",
     "firebase": "^7.17.2",
-    "firebase-tools": "^8.9.2",
+    "firebase-tools": "^8.10.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -70,7 +70,9 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-googleplus": {},
+      "cordova-plugin-googleplus": {
+        "PLAY_SERVICES_VERSION": "15.0.1"
+      },
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},

@@ -51,7 +51,7 @@ export class HomePage implements OnInit, OnDestroy, AfterViewInit {
             logoImgName: snap.data().logoImgName,
             createdAt: snap.data().createdAt,
           });
-          this.loading.dismiss();
+          this.loading.dismiss(); 
         return false;
       });
     });

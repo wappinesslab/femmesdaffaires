@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="announcementCategoryForm">
+  <form [formGroup]="announcementCategoryForm"> 
     <ion-item>
       <h3> {{ modalTitle }} </h3>
-      <ion-label position="floating">Nom de la catégorie</ion-label>
-      <ion-input formControlName="categoryName" type="text" value="{{name}}"  [class.invalid]="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
+      <ion-label position="stacked">Nom de la catégorie</ion-label>
+      <ion-input formControlName="categoryName" type="text" value=""  [class.invalid]="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
@@ -21,7 +21,7 @@
 
     <ion-item>
       <ion-label position="floating">Slug de la catégorie:</ion-label>
-      <ion-input formControlName="categorySlug" type="text" value="Nooooooo" [class.invalid]="!announcementCategoryForm.controls['categorySlug'].valid && announcementCategoryForm.controls['categorySlug'].touched"></ion-input>
+      <ion-input formControlName="categorySlug" type="text" value="" [class.invalid]="!announcementCategoryForm.controls['categorySlug'].valid && announcementCategoryForm.controls['categorySlug'].touched"></ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!announcementCategoryForm.controls['categorySlug'].valid && announcementCategoryForm.controls['categorySlug'].touched">
       <p>Votre titre de campagne doit avoir entre 5 et 20 caractères.</p>

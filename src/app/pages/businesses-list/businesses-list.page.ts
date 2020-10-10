@@ -27,7 +27,7 @@ export class BusinessesListPage implements OnInit {
     await this.loading.present();
 
     this.id = this.route.snapshot.paramMap.get('id');
-    this.announcementService.getBusinessessesList().where('companyCategory', '==', `${this.id}`).orderBy("createdAt", "desc").get().then( async businessDetailsSnapshot => {
+    this.announcementService.getBusinessessesList().where('categoryID', '==', `${this.id}`).orderBy("createdAt", "desc").get().then( async businessDetailsSnapshot => {
       this.businessesList = await [];
       businessDetailsSnapshot.forEach( async (snap) => {
           this.businessesList.push({
@@ -35,12 +35,13 @@ export class BusinessesListPage implements OnInit {
             personFirstName: snap.data().personFirstName,
             personLastName: snap.data().personLastName,
             description: snap.data().description,
-            ceo: snap.data().ceo,
             category: snap.data().categoryID,
+            companyName: snap.data().companyName,
+            companyCity: snap.data().companyCity,
             personEmail: snap.data().personEmail,
+            whatsappNumber: snap.data().whatsappNumber,
             phoneNumber: snap.data().phoneNumber,
-            phone1: snap.data().phone1,
-            phone2: snap.data().phone2,
+            companyPhone3: snap.data().companyPhone3,
             address: snap.data().address,
             state: snap.data().state,
             website: snap.data().website,

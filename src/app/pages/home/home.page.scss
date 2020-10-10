@@ -1,4 +1,14 @@
+ion-toolbar .head {
+    --background-color: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.header::after {
+    background-image: none;
+  }
+
 ion-content {
+    --padding-top : -80px !important;
     --background: #f0f0f0;
 }
 
@@ -20,4 +30,9 @@ div.home-category-item {
 
 .select-category {
     padding-left: 20px;
+}
+
+a, a.active-link :active {
+    text-decoration: none;
+    color: var(--ion-color-secondary);
 }

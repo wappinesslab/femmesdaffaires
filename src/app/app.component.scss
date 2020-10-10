@@ -1,0 +1,19 @@
+ion-menu {
+    --width: 200px;
+}
+
+div.side-menu-div-1 {
+    margin: 0 auto !important;
+}
+
+ion-content {
+    --background: var(--ion-color-secondary);
+}
+
+ion-list, ion-list-header, ion-item {
+    --background: var(--ion-color-secondary, var(--ion-background-color, #3200a2));
+}
+
+.list-md {
+    background: var(--ion-background-color, #3200a2);
+}

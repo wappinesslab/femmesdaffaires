@@ -65,19 +65,6 @@
     <ion-item class="error-message" *ngIf="!announcementForm.controls['personNIFCIN'].valid && announcementForm.controls['personNIFCIN'].touched">
       <p>Chiffres uniquement. N'ajoutez pas les traits d'union.</p>
     </ion-item>
-
-    <ion-item>
-      <ion-label>Statut:</ion-label>
-      <ion-select formControlName="personStatus" placeholder="Choisir une catégorie" [class.invalid]="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
-        <ion-select-option value="Célibataire">Célibataire</ion-select-option>
-        <ion-select-option value="Union libre">Union libre</ion-select-option>
-        <ion-select-option value="Mariéé">Mariée</ion-select-option>
-        <ion-select-option value="Divorcée">Divorcée</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item class="error-message" *ngIf="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
-      <p>Vous devez choisir un statut.</p>
-    </ion-item>
     <br>
     <br>
 
@@ -124,6 +111,21 @@
     </ion-item>
     <ion-item class="error-message" *ngIf="!announcementForm.controls['companyEnrollDate'].valid && announcementForm.controls['companyEnrollDate'].touched">
       <p>Vous devez choisir une date d'inscription.</p>
+    </ion-item>
+    <br>
+
+    
+    <ion-item>
+      <ion-label>Statut de l'entreprise:</ion-label>
+      <ion-select formControlName="companyStatus" placeholder="Choisir une catégorie" [class.invalid]="!announcementForm.controls['companyStatus'].valid && announcementForm.controls['companyStatus'].touched">
+        <ion-select-option value="Individuelle">Individuelle</ion-select-option>
+        <ion-select-option value="Annonyme">Annonyme</ion-select-option>
+        <ion-select-option value="Colléctive">Colléctive</ion-select-option>
+        <ion-select-option value="Informelle">Informelle</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['companyStatus'].valid && announcementForm.controls['companyStatus'].touched">
+      <p>Vous devez choisir un statut.</p>
     </ion-item>
     <br>
 
