@@ -52,7 +52,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/business-details/business-details.module').then( m => m.BusinessDetailsPageModule)
   },
   {
-    path: 'businesses-list/:id',
+    path: 'businesses-list/:id/:name',
     loadChildren: () => import('./pages/businesses-list/businesses-list.module').then( m => m.BusinessesListPageModule)
   }
 

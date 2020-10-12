@@ -66,7 +66,7 @@
         Catégories
       </div>
 
-      <ion-item-sliding  *ngFor="let category of categoryList">
+      <ion-item-sliding #sliding  *ngFor="let category of categoryList">
         <ion-item>
           <ion-icon name="bookmark-outline" slot="start"></ion-icon>
           <ion-label>
@@ -74,12 +74,12 @@
           </ion-label>
         </ion-item>
 
-        <ion-item-options side="start" (ionSwipe)="editBusinessCategory(category?.id)">
-          <ion-item-option color="secondary" (click)="editBusinessCategory(category?.name, category?.id)" expandable>Modifier</ion-item-option>
+        <ion-item-options side="start" (ionSwipe)="editBusinessCategory(category?.id, category?.name, sliding)">
+          <ion-item-option color="secondary" (click)="editBusinessCategory(category?.id, category?.name, sliding)" expandable>Modifier</ion-item-option>
         </ion-item-options>
         
-        <ion-item-options side="end" (ionSwipe)="deleteBusinessCategory(category?.name, category?.id)">
-          <ion-item-option color="danger" (click)="deleteBusinessCategory(category?.name, category?.id)" expandable>Supprimer</ion-item-option>
+        <ion-item-options side="end" (ionSwipe)="deleteBusinessCategory(category?.name, category?.id, sliding)">
+          <ion-item-option color="danger" (click)="deleteBusinessCategory(category?.name, category?.id, sliding)" expandable>Supprimer</ion-item-option>
         </ion-item-options>
         
       </ion-item-sliding>

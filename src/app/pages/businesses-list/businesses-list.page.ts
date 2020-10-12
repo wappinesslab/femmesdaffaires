@@ -11,7 +11,8 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 export class BusinessesListPage implements OnInit {
   id: String;
   businessesList: Array<any>;
-  loading: HTMLIonLoadingElement
+  loading: HTMLIonLoadingElement;
+  categoryName: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class BusinessesListPage implements OnInit {
     await this.loading.present();
 
     this.id = this.route.snapshot.paramMap.get('id');
+    this.categoryName = this.route.snapshot.paramMap.get('name');
     this.announcementService.getBusinessessesList().where('categoryID', '==', `${this.id}`).orderBy("createdAt", "desc").get().then( async businessDetailsSnapshot => {
       this.businessesList = await [];
       businessDetailsSnapshot.forEach( async (snap) => {

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardFabComponent } from 'src/app/components/dashboard-fab/dashboard-fab.component';
 import { PopoverController, LoadingController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import * as firebase from "firebase";
-import { Router } from '@angular/router';
-import { AddAnnoucementCategoryComponent } from 'src/app/components/add-annoucement-category/add-annoucement-category.component';
+import { AnnouncementService } from 'src/app/services/announcement.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +24,9 @@ export class DashboardPage implements OnInit {
     private loadingCtlr: LoadingController,
     private alertController: AlertController,
     private toastController: ToastController,
-    private modalCtlr: ModalController
+    private modalCtlr: ModalController,
+    private alertCtrl: AlertController,
+    private announcementService: AnnouncementService
   ) {
     this.segmentShowFirst = "businesses";
   }
@@ -89,32 +90,43 @@ export class DashboardPage implements OnInit {
     return await pop.present();
   }
 
-  async editBusinessCategory(catID) {
-    firebase.firestore().collection("categories").doc(`${catID}`).get().then(async catListSnapshot => {
-      this.businessCategory = catListSnapshot.data();
-
-    const modal = await this.modalCtlr.create({
-      component: AddAnnoucementCategoryComponent,
-      componentProps: {
-      'modalTitle' : 'Modifier cette catégorie',
-      'modalSubmitBtn' : 'Modifier',
-      'id' : this.businessCategory.id,
-      'name' : this.businessCategory.name,
-      'slug' : this.businessCategory.slug
-      },
-      cssClass: 'custom-modal-css',
-      backdropDismiss: false
+  async editBusinessCategory(catID, catName, sliding): Promise<void> {
+    const alert = await this.alertCtrl.create({
+      header: catName,
+      subHeader: "Modifier cette catégorie!",
+      inputs: [
+        {
+          type: "text",
+          name: "categoryName",
+          value: catName
+        }
+      ],
+      buttons: [
+        { text: "Annuler" },
+        {
+          text: "Modifier",
+          handler: data => {
+            this.announcementService.updateAnnouncementCategory(catID, data.categoryName).then( async () => {
+              const toast = await this.toastController.create({
+                message: 'Cette catégorie a été modifiée avec succès!',
+                duration: 3000
+              });
+              toast.present();
+              console.log('CATID', catID, data.categoryName);
+            });
+          }
+        }
+      ]
     });
-    console.log('Name: ', this.businessCategory.name, 'ID: ', this.businessCategory.id, 'Slug: ', this.businessCategory.Slug);
-    await modal.present();
-    this.popover.dismiss();
-    });
+    await alert.present();
+    sliding.close();
+    console.log(catID, catName);
   }
 
 
   
 
-  async deleteBusiness(bizLogo, bizName, bizID) {
+  async deleteBusiness(bizLogo, bizName, bizID, sliding) {
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -160,10 +172,11 @@ export class DashboardPage implements OnInit {
       ]
     });
     await alert.present();
+    sliding.close();
   }
 
   
-  async deleteBusinessCategory(categoryName, categoryID) {
+  async deleteBusinessCategory(categoryName, categoryID, sliding) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: categoryName,
@@ -203,6 +216,7 @@ export class DashboardPage implements OnInit {
       ]
     });
     await alert.present();
+    sliding.close();
   }
   
   myFormat = function(date) {

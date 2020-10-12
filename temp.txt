@@ -1,0 +1,24 @@
+
+  async editBusinessCategory(catID) {
+    firebase.firestore().collection("categories").doc(`${catID}`).get().then(async catListSnapshot => {
+      this.businessCategory = catListSnapshot.data();
+
+    const modal = await this.modalCtlr.create({
+      component: AddAnnoucementCategoryComponent,
+      componentProps: {
+      'modalTitle' : 'Modifier cette catégorie',
+      'modalSubmitBtn' : 'Modifier',
+      'id' : this.businessCategory.id,
+      'name' : this.businessCategory.name,
+      'slug' : this.businessCategory.slug
+      },
+      cssClass: 'custom-modal-css',
+      backdropDismiss: false
+    });
+    console.log('Name: ', this.businessCategory.name, 'ID: ', this.businessCategory.id, 'Slug: ', this.businessCategory.Slug);
+    await modal.present();
+    this.popover.dismiss();
+    });
+  }
+
+  

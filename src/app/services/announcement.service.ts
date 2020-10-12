@@ -12,6 +12,8 @@ export class AnnouncementService {
   public announcementCategoryListRef: firebase.firestore.CollectionReference;
   public announcementListRef: firebase.firestore.CollectionReference;
 
+  categoryDocRef: firebase.firestore.DocumentReference;
+
   constructor(
     private authService: AuthService
   ) {
@@ -114,5 +116,9 @@ export class AnnouncementService {
     });
   }
 
+  async updateAnnouncementCategory(categoryID: String, categoryName: String): Promise<any> {
+    this.categoryDocRef  = await firebase.firestore().doc(`categories/${categoryID}`);
+    return this.categoryDocRef.update({ name: categoryName });
+  }
 
 }

@@ -15,7 +15,7 @@
     <ion-text class="select-category">SELECTIONNER UNE CATEGORIE</ion-text>
 
     <div class="home-category-section">
-      <a class="active-link" *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}">
+      <a class="active-link" *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}/{{category?.name}}">
         <div class="home-category-item">
           {{category?.name}}
         </div>

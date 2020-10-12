@@ -12,7 +12,7 @@
     <ion-item>
       <h3> {{ modalTitle }} </h3>
       <ion-label position="stacked">Nom de la catégorie</ion-label>
-      <ion-input formControlName="categoryName" type="text" value=""  [class.invalid]="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
+      <ion-input formControlName="categoryName" type="text" [(ngModel)]="name"  [class.invalid]="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!announcementCategoryForm.controls['categoryName'].valid && announcementCategoryForm.controls['categoryName'].touched">
