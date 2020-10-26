@@ -3,6 +3,7 @@ import { DashboardFabComponent } from 'src/app/components/dashboard-fab/dashboar
 import { PopoverController, LoadingController, AlertController, ToastController, ModalController } from '@ionic/angular';
 import * as firebase from "firebase";
 import { AnnouncementService } from 'src/app/services/announcement.service';
+import { EditAnnouncementComponent } from 'src/app/components/edit-announcement/edit-announcement.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -89,6 +90,26 @@ export class DashboardPage implements OnInit {
     });
     return await pop.present();
   }
+
+  
+  async editAnnouncement(
+    announcementID: String,
+    sliding
+    ) {
+
+    const modal = await this.modalCtlr.create({
+      component: EditAnnouncementComponent,
+      componentProps: {
+      'id' : announcementID
+      },
+      cssClass: 'custom-modal-css',
+      backdropDismiss: false
+    });
+    await modal.present();
+    sliding.close();
+    this.popover.dismiss();
+  }
+
 
   async editBusinessCategory(catID, catName, sliding): Promise<void> {
     const alert = await this.alertCtrl.create({

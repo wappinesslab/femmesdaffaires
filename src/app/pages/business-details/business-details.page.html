@@ -1,9 +1,90 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>business-details</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title> {{business?.companyName}} </ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  
+  
+  <div class="ion-padding ion-text-center">
+    <ion-avatar class="avatar-lg">
+      <img *ngIf="business?.logoImgUrl" src="{{business?.logoImgUrl}}" alt="">
+      <img *ngIf="business?.logoImgUrl == ''" src="../../../assets/images/femmes-daffaires-img-gray.png" alt="">
+    </ion-avatar>
+      <br>
+    <h3>{{business?.companyName}}</h3>
+  </div> <br>
+
+  
+  <ion-card class="card-custom">
+    <ion-card-content>
+      <strong>INFORMATIONS DU PROPIO</strong>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-icon name="person-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Nom complet:</p>
+            <h2>{{business?.personFirstName}} {{business?.personLastName}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Email:</p>
+            <h2>{{business?.personEmail}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card class="card-custom">
+    <ion-card-content>
+      <strong>INFORMATIONS DE L'ENTREPRISE</strong>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-icon name="business-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Entreprise:</p>
+            <h2>{{business?.companyName}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="caret-forward-circle-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Description:</p>
+            <h2>{{business?.companyDescription}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="business?.companyEmail">
+          <ion-icon name="caret-forward-circle-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Email:</p>
+            <h2>{{business?.companyEmail}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="caret-forward-circle-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Numéro de téléphone:</p>
+            <h2>{{business?.phoneNumber}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="caret-forward-circle-outline" color="secondary" size="small" slot="start"></ion-icon>
+          <ion-label>
+            <p>Numéro WhatsApp:</p>
+            <h2>{{business?.whatsappNumber}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

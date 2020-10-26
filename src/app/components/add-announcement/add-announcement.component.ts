@@ -24,7 +24,7 @@ export class AddAnnouncementComponent implements OnInit {
   segmentShowFirst: string = "businesses"
   
   loading: HTMLIonLoadingElement;
-  
+   
   categoryList: Array<any>;
 
   constructor(

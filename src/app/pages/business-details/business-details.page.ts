@@ -8,7 +8,8 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
   styleUrls: ['./business-details.page.scss'],
 })
 export class BusinessDetailsPage implements OnInit {
-  public currentBusiness: any = {};
+  id: string;
+  business: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -17,12 +18,37 @@ export class BusinessDetailsPage implements OnInit {
 
   ngOnInit() {
     
-    const businessId: string = this.route.snapshot.paramMap.get('id');
-    this.announcementList.getBusinessessDetails(businessId).then( businessSnapshot => {
-      this.currentBusiness = businessSnapshot.data();
-      this.currentBusiness.id = businessSnapshot.id;
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.announcementList.getBusinessessDetails(this.id).then( businessSnapshot => {
+      this.business = businessSnapshot.data();
+      this.business.id = businessSnapshot.id;
     });
 
   }
+
+    
+  myFormat = function(date) {
+    var month_names = [
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juil.",
+      "aôut",
+      "sépt.",
+      "oct.",
+      "nov.",
+      "déc."
+    ];
+    let d = new Date(date);
+    var day = d.getDate();
+    var month_index = d.getMonth();
+    var year = d.getFullYear();
+
+    return "" + day + " " + month_names[month_index] + " " + year;
+  }
+
 
 }

@@ -54,7 +54,11 @@ const routes: Routes = [
   {
     path: 'businesses-list/:id/:name',
     loadChildren: () => import('./pages/businesses-list/businesses-list.module').then( m => m.BusinessesListPageModule)
+  },  {
+    path: 'member-signup-form',
+    loadChildren: () => import('./pages/member-signup-form/member-signup-form.module').then( m => m.MemberSignupFormPageModule)
   }
+
 
 
 ];

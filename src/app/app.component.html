@@ -8,14 +8,10 @@
         <ion-list-header>
           <ion-label color="primary">MENU PRINCIPAL</ion-label>
         </ion-list-header>
-          <ion-item>
-            <ion-icon color="light" slot="start" name="search-outline"></ion-icon>
-            <ion-button fill="clear" color="light">Rechercher</ion-button>
-          </ion-item>
-          <ion-item>
-            <ion-icon color="light" slot="start" name="bookmarks-outline"></ion-icon>
-            <ion-button fill="clear" color="light">Favoris</ion-button>
-          </ion-item>
+        <ion-item>
+          <ion-icon color="light" slot="start" name="document-outline"></ion-icon>
+          <ion-button fill="clear" (click)="openRoute('member-signup-form')" color="light">Inscription</ion-button>
+        </ion-item>
           <ion-item>
             <ion-icon color="light" slot="start" name="settings-outline"></ion-icon>
             <ion-button fill="clear" (click)="openRoute('settings')" color="light">Paramètres</ion-button>
