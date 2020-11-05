@@ -3,6 +3,12 @@ ion-content {
     --padding-end: 20px;
 }
 
+iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0 !important;
+}
+
 @media screen and (min-width: 850px) {
 }
 @media screen and (max-width: 850px) {

@@ -62,6 +62,7 @@ export class HomePage implements OnInit, OnDestroy, AfterViewInit {
           this.categoryList.push({
             id: snap.id,
             name: snap.data().name,
+            icon: snap.data().icon,
             slug: snap.data().slug,
             createdAt: snap.data().createdAt,
           });

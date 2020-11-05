@@ -13,12 +13,11 @@
 
 
   <div class="category-list">
-    <br><br><br>
-    <p class="ion-text-center">TOUTE LES CATEGORIES</p>
-    <br><br>
+    <h3 class="ion-text-center">TOUTE LES CATEGORIES</h3>
     <div *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}/{{category?.name}}" class="category-item">
-      <div class="title">
-        {{category?.name}}
+      <div class="ion-text-center">
+        <ion-icon size="large" src="../../../assets/my-custom-icons/svg/{{category?.icon}}.svg"></ion-icon>
+        <p class="cat-name">{{category?.name}}</p>
       </div>
       <div class="card-thumbnail" [style.backgroundImage]=""></div>
     </div>
