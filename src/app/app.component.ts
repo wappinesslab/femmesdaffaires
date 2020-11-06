@@ -51,6 +51,11 @@ export class AppComponent {
     this.inAppBrowser.create(url,target,this.options);
   }
 
+  openRoute (e) {
+    this.router.navigateByUrl(e);
+    this.menuCtler.close();
+  }
+
 
   initializeApp() {
     firebase.initializeApp(environment.firebase);

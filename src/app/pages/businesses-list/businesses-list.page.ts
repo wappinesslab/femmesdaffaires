@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AnnouncementService } from 'src/app/services/announcement.service';
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Component({
   selector: 'app-businesses-list',
@@ -14,10 +15,14 @@ export class BusinessesListPage implements OnInit {
   loading: HTMLIonLoadingElement;
   categoryName: String;
 
+  sampleArr = [];
+  resultArr = [];
+
   constructor(
     private route: ActivatedRoute,
     private announcementService: AnnouncementService,
-    private loadingCtlr: LoadingController
+    private loadingCtlr: LoadingController,
+    private afs: AngularFirestore
   ) { }
 
   async ngOnInit() {
@@ -56,6 +61,17 @@ export class BusinessesListPage implements OnInit {
       });
     });
 
+  }
+
+  async searchTerm(ev) {
+    this.businessesList = await [];
+    const searchTerm = ev.srcElement.value;
+
+    this.businessesList = this.businessesList.filter(currentBusiness => {
+      if(currentBusiness.companyName && searchTerm) {
+        return (currentBusiness.companyName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || currentBusiness.personFirstName.toLoweCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    })
   }
 
 }

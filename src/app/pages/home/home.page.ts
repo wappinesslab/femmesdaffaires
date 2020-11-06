@@ -69,6 +69,7 @@ export class HomePage implements OnInit, OnDestroy, AfterViewInit {
           this.loading.dismiss();
         return false;
       });
+      console.log('Size: ', catListSnapshot.size);
     });
   }
 

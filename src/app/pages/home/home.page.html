@@ -8,16 +8,20 @@
 
 <ion-content fullscreen="true">
 
+  <img src="../../../assets/images/slide1.jpg" alt="">
+
+
   <app-home-slider-top></app-home-slider-top>
 
 
+  <h3 class="ion-text-center">TOUTE LES CATEGORIES</h3>
 
   <div class="category-list">
-    <h3 class="ion-text-center">TOUTE LES CATEGORIES</h3>
     <div *ngFor="let category of categoryList" routerLink="/businesses-list/{{category.id}}/{{category?.name}}" class="category-item">
       <div class="ion-text-center">
         <ion-icon size="large" src="../../../assets/my-custom-icons/svg/{{category?.icon}}.svg"></ion-icon>
         <p class="cat-name">{{category?.name}}</p>
+        <p *ngIf="category?.length < 1"> 0 </p>
       </div>
       <div class="card-thumbnail" [style.backgroundImage]=""></div>
     </div>
@@ -26,19 +30,25 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="secondary">
-    <ion-tabs color="secondary">
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-          <ion-icon name="home-outline"></ion-icon>
-          <ion-label> Accueil </ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="settings">
-          <ion-icon name="settings-outline"></ion-icon>
-          <ion-label> Paramètres </ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
+  <ion-toolbar color="light">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button href="mailto:contact@ccfeh.com" expand="full" fill="clear" color="secondary">
+            <ion-icon slot="start" name="mail-unread-outline"></ion-icon>
+            Contactez-nous
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full" fill="clear" color="secondary">
+            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+            A propos
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
   </ion-toolbar>
 </ion-footer>

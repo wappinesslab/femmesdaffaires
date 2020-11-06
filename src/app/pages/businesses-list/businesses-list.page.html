@@ -9,14 +9,14 @@
 
 <ion-content>
 
-  
   <app-home-slider-top></app-home-slider-top>
 
   <ion-list lines="full">
+
+    <ion-searchbar placeholder="Rechercher..." (ionInput)="searchTerm($event)" showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+
     
-    <div class="businesses-list-page-title text-align-center">
-      TOUTES LES ENTREPRISES
-    </div>
+    <h3 class="ion-text-center">TOUTES LES ENTREPRISES</h3>
 
     <div *ngFor="let businesses of businessesList">
       <ion-item>
