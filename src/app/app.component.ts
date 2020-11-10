@@ -32,6 +32,12 @@ export class AppComponent {
     allowInlineMediaPlayback : 'no',//iOS only 
     presentationstyle : 'pagesheet',//iOS only 
     fullscreen : 'yes',//Windows only    
+    hidespinner: 'no',
+    toolbarcolor: '#3300a2',
+    navigationbuttoncolor: '#fff',
+    hideurlbar: 'yes',
+    closebuttoncolor: '#fff',
+    footer: 'yes'
 };
 
 
