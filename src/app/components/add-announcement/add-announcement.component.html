@@ -65,6 +65,20 @@
     <ion-item class="error-message" *ngIf="!announcementForm.controls['personNIFCIN'].valid && announcementForm.controls['personNIFCIN'].touched">
       <p>Chiffres uniquement. N'ajoutez pas les traits d'union.</p>
     </ion-item>
+
+        
+    <ion-item>
+      <ion-label>Statut de l'intéresée</ion-label>
+      <ion-select formControlName="personStatus" placeholder="Choisir un sécteur" [class.invalid]="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
+        <ion-select-option value="Entrepreneure">Entrepreneure</ion-select-option>
+        <ion-select-option value="Professionnellle">Professionnellle</ion-select-option>
+        <ion-select-option value="Etudiante">Etudiante</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!announcementForm.controls['personStatus'].valid && announcementForm.controls['personStatus'].touched">
+      <p>Vous devez choisir un statut.</p>
+    </ion-item>
+    
     <br>
     <br>
 

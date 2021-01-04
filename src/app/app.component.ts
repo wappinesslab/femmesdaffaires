@@ -53,7 +53,7 @@ export class AppComponent {
   }
 
   openBrowser(url: string) {
-    let target = "_self";
+    let target = "_system";
     this.inAppBrowser.create(url,target,this.options);
   }
 
