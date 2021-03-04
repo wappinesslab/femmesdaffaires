@@ -8,6 +8,7 @@ import { BusinessesListPageRoutingModule } from './businesses-list-routing.modul
 
 import { BusinessesListPage } from './businesses-list.page';
 import { SharedComponentsModule } from 'src/app/components/shared-components.module';
+import { FilterPipe } from './FilterPipe';
 
 @NgModule({
   imports: [

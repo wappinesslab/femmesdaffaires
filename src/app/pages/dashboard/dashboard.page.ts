@@ -12,6 +12,8 @@ import { EditAnnouncementComponent } from 'src/app/components/edit-announcement/
 })
 export class DashboardPage implements OnInit {
 
+  business: any;
+
   segmentShowFirst: string;
   categoryList: Array<any>;
   businessList: Array<any>;
@@ -75,6 +77,7 @@ export class DashboardPage implements OnInit {
             logoImgUrl: snap.data().logoImgUrl,
             logoImgName: snap.data().logoImgName,
             createdAt: snap.data().createdAt,
+            companyName: snap.data().companyName,
           });
           this.loading.dismiss();
         return false;
@@ -108,6 +111,85 @@ export class DashboardPage implements OnInit {
     await modal.present();
     sliding.close();
     this.popover.dismiss();
+  }
+
+
+  
+  async editCompanyAnnualFee(companyID, sliding): Promise <void> {
+
+
+    const alert = await this.alertController.create({
+      header: "Cotisation annuelle",
+      inputs: [
+        {
+          type: "radio",
+          label: "À Jour",
+          name: "annualFee",
+          value: "uptodate",
+          checked: true
+        },
+        {
+          type: "radio",
+          label: "Retard de paiement",
+          name: "annualFee",
+          value: 'outdated'
+        }
+      ],
+      buttons: [
+        { text: "Annuler" },
+        {
+          text: "Modifier",
+          handler: data => {
+            this.announcementService.updateCompanyAnnualFee(companyID, data).then( async () => {
+              const toast = await this.toastController.create({
+                message: 'La cotisation été modifiée avec succès!',
+                duration: 3000
+              });
+              toast.present();
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
+    sliding.close();
+  }
+
+
+
+  
+  async editCompanyStatus(companyID, companyName, sliding): Promise <void> {
+
+
+    const alert = await this.alertController.create({
+      header: "Statut de l'entreprise",
+      inputs: [
+        {
+          type: "text",
+          label: "Statut de l'entreprise",
+          name: "companyName",
+          value: companyName,
+        }
+      ],
+      buttons: [
+        { text: "Annuler" },
+        {
+          text: "Modifier",
+          handler: data => {
+            this.announcementService.updateCompanyStatus(companyID, data).then( async () => {
+              const toast = await this.toastController.create({
+                message: 'La cotisation été modifiée avec succès!',
+                duration: 3000
+              });
+              toast.present();
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
+    sliding.close();
+    console.log("company Name", companyName, "ID ", companyID);
   }
 
 

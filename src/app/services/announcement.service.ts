@@ -186,10 +186,20 @@ export class AnnouncementService {
     return this.categoryDocRef.update({ companyName, companyDescription, phoneNumber, whatsappNumber});
   }
 
+  async updateCompanyAnnualFee(id: String, annualFee: String): Promise<any> {
+    this.businessDocRef  = await firebase.firestore().doc(`businesses/${id}`);
+    return this.businessDocRef.update({ annualFee });
+  }
+
+
+  async updateCompanyStatus(id: String, companyName: String): Promise<any> {
+    this.businessDocRef  = await firebase.firestore().doc(`businesses/${id}`);
+    return this.businessDocRef.update({ companyName });
+  }
+
   async updateBusinessLogo(id: String, logoImgUrl: String, logoImgName: String): Promise<any> {
     this.categoryDocRef  = await firebase.firestore().doc(`businesses/${id}`);
     return this.categoryDocRef.update({ logoImgUrl, logoImgName});
   }
-
 
 }

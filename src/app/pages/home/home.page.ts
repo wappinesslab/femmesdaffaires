@@ -30,7 +30,7 @@ export class HomePage implements OnInit, OnDestroy, AfterViewInit {
     });
     await this.loading.present();
 
-    firebase.firestore().collection("businesses").orderBy("createdAt", "desc").get().then(async bizListSnapshot => {
+    firebase.firestore().collection("businesses").where('annualFee', '==', 'uptodate').orderBy("createdAt", "desc").get().then(async bizListSnapshot => {
       this.businessList = await [];
       bizListSnapshot.forEach( async (snap) => {
           this.businessList.push({

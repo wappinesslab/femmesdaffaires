@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as firebase from "firebase";
 import { AnnouncementService } from 'src/app/services/announcement.service';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-add-announcement',
@@ -279,6 +279,10 @@ export class AddAnnouncementComponent implements OnInit {
     });
   }
 
+  ionViewDidLeave() {
+    this.modalCtlr.dismiss();
+  }
+
   
   async onChange(event) {
 
@@ -337,7 +341,7 @@ export class AddAnnouncementComponent implements OnInit {
     .then(() => {
       console.log(announcementForm);
       self.loading.dismiss().then(() => {
-        self.router.navigateByUrl("/dashboard");
+        self.router.navigateByUrl("/home");
         this.modalCtlr.dismiss();
         this.segmentShowFirst = "businesses";
       });

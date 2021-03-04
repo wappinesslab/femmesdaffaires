@@ -10,7 +10,7 @@
 <ion-content>
   <ion-segment [(ngModel)]="segmentShowFirst">
     <ion-segment-button value="businesses">
-      <ion-label>Entreprises</ion-label>
+      <ion-label>Membres</ion-label>
     </ion-segment-button>
     <ion-segment-button value="categories">
       <ion-label>Catégories</ion-label>
@@ -24,7 +24,7 @@
       
 
       <div class="category-list">
-        Entreprises
+        Membres
       </div>
 
 
@@ -46,9 +46,16 @@
           </ion-note>
         </ion-item>
 
-        <ion-item-options side="start" (ionSwipe)="editAnnouncement(biz?.id, sliding)">
-          <ion-item-option color="secondary" (click)="editAnnouncement(biz?.id, sliding)" expandable>Modifier</ion-item-option>
+        <ion-item-options side="start">
+          <ion-item-option color="secondary" (click)="editAnnouncement(biz?.id, sliding)">Modifier</ion-item-option>
+          <ion-item-option color="primary" (click)="editCompanyStatus(biz?.id, biz?.companyName, sliding)">
+            Statut
+          </ion-item-option>
+          <ion-item-option color="success" (click)="editCompanyAnnualFee(biz?.id, sliding)">
+            Cotisation
+          </ion-item-option>
         </ion-item-options>
+        
         
         <ion-item-options side="end" (ionSwipe)="deleteBusiness(biz?.logoImgName, biz?.companyName, biz?.id, sliding)">
           <ion-item-option color="danger" (click)="deleteBusiness(biz?.logoImgName, biz?.companyName, biz?.id, sliding)" expandable>Supprimer</ion-item-option>
